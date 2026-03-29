@@ -1,66 +1,64 @@
-import { Button } from "@/components/ui/button";
-import { Sword } from "lucide-react";
+import { User } from "lucide-react";
 
-interface NavbarProps {
-  view: "create" | "characters";
-  onViewChange: (v: "create" | "characters") => void;
-}
+const NAV_LINKS = ["Dashboard", "Creators Lab", "Codex", "Community", "Help"];
 
-export default function Navbar({ view, onViewChange }: NavbarProps) {
+export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md border border-primary/40 bg-primary/10">
-            <Sword className="h-5 w-5 text-primary" />
-          </div>
-          <div className="leading-tight">
-            <div className="font-display text-xs font-semibold tracking-widest text-primary">
-              CHARACTER
-            </div>
-            <div className="font-display text-xs font-semibold tracking-widest text-foreground">
-              FORGE
-            </div>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
+      <div className="glass rounded-2xl px-5 py-2.5 flex items-center justify-between gap-4 max-w-7xl mx-auto">
+        <div className="flex-shrink-0">
+          <span className="font-cinzel font-black text-xs tracking-[0.18em] text-gold-gradient uppercase leading-tight">
+            THE BIG RUBBER BALL
+            <br />
+            IN SPACE
+          </span>
         </div>
 
-        {/* Nav links */}
-        <nav className="flex items-center gap-1">
-          <button
-            type="button"
-            data-ocid="nav.create.link"
-            onClick={() => onViewChange("create")}
-            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-              view === "create"
-                ? "bg-primary/15 text-primary"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Create
-          </button>
-          <button
-            type="button"
-            data-ocid="nav.characters.link"
-            onClick={() => onViewChange("characters")}
-            className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-              view === "characters"
-                ? "bg-primary/15 text-primary"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            My Characters
-          </button>
+        <nav
+          className="hidden md:flex items-center gap-1 rounded-full px-2 py-1"
+          style={{
+            background: "oklch(10% 0.03 285 / 0.7)",
+            border: "1px solid oklch(30% 0.06 285 / 0.4)",
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <button
+              type="button"
+              key={link}
+              className="px-3 py-1 rounded-full text-xs font-semibold font-rajdhani tracking-wide text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] transition-colors duration-200 uppercase"
+            >
+              {link}
+            </button>
+          ))}
         </nav>
 
-        {/* CTA */}
-        <Button
-          data-ocid="nav.explore.button"
-          onClick={() => onViewChange("create")}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 glow-teal-sm px-5 text-sm font-semibold"
+        <div
+          className="flex items-center gap-2 rounded-full px-3 py-1.5"
+          style={{
+            background: "oklch(10% 0.03 285 / 0.7)",
+            border: "1px solid oklch(30% 0.06 285 / 0.4)",
+          }}
         >
-          Explore
-        </Button>
+          <div
+            className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center"
+            style={{ background: "oklch(28% 0.1 290)" }}
+          >
+            <img
+              src="/assets/generated/traveler-avatar-transparent.dim_80x80.png"
+              alt="avatar"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-[10px] font-cinzel text-[var(--color-gold)] tracking-widest uppercase">
+              Traveler
+            </span>
+            <span className="text-[9px] text-[var(--color-muted-fg)] font-rajdhani">
+              Lv.1
+            </span>
+          </div>
+          <User size={12} className="text-[var(--color-muted-fg)]" />
+        </div>
       </div>
     </header>
   );

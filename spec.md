@@ -1,48 +1,38 @@
-# Character Forge
+# The Big Rubber Ball in Space: Character Creation
 
 ## Current State
-New project. Empty Motoko backend and scaffolded React frontend.
+Empty project — no existing application files.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Character creator app supporting D&D and Shadowrun systems
-- User selects: game system, race, gender, class/archetype
-- Avatar selection based on chosen race + gender combination
-- Character summary/card display after creation
-- Ability to save characters to the backend (per session or named)
-- Browse saved characters
+- Full character creation website with dark fantasy/sci-fi aesthetic
+- Animated space background (stars + nebula clouds)
+- Multi-step character creation wizard (Step 1: Basics, Step 2: Abilities & Skills, Step 3: Character Sheet)
+- Step 1: Character Name, Race dropdown (Human, Elf, Dwarf, Orc, Tiefling, Dragonborn, Troll, Goblin, Custom), About Me textarea
+- Step 2: 6 ability sliders (Strength, Dexterity, Perception, Knowledge, Mechanical, Technical) with 0-10 point values and live linked skills display
+- Skill system: each ability governs specific skills shown as live feedback below each slider
+- Smart recommendation system: highlights which ability controls most selected skills and shows suggestion text
+- Equipment Synergy panel with tooltips/hover effects explaining skill-equipment relationships
+- Step 3: Character Sheet view with PDF generation (jsPDF)
+- Save to localStorage, Reset/Edit functionality
+- Responsive layout (mobile + desktop)
+- Glassmorphism UI panels, glowing accents, smooth animations
 
 ### Modify
-- N/A (new project)
+- Nothing (new project)
 
 ### Remove
-- N/A
+- Nothing
 
 ## Implementation Plan
-
-### Backend (Motoko)
-- Character type: { id, name, system (DnD|Shadowrun), race, gender, class, avatarId, createdAt }
-- createCharacter(name, system, race, gender, class, avatarId) -> Character
-- getCharacters() -> [Character]
-- deleteCharacter(id) -> Bool
-
-### Frontend
-- Multi-step character creator wizard:
-  1. Choose game system (D&D or Shadowrun)
-  2. Choose race (filtered by system)
-  3. Choose gender
-  4. Choose class/archetype (filtered by system)
-  5. Choose avatar (filtered by race + gender)
-  6. Name your character + confirm
-- Character card preview panel (updates live as user selects)
-- Gallery of saved characters
-- Dark fantasy/cyberpunk aesthetic
-
-### Data
-- D&D Races: Human, Elf, Dwarf, Halfling, Gnome, Half-Orc, Tiefling, Dragonborn
-- D&D Classes: Fighter, Wizard, Rogue, Cleric, Ranger, Paladin, Bard, Druid, Warlock, Barbarian
-- Shadowrun Races (Metatypes): Human, Elf, Dwarf, Ork, Troll
-- Shadowrun Archetypes: Street Samurai, Decker, Mage, Shaman, Rigger, Face, Adept, Technomancer
-- Genders: Male, Female, Non-binary
-- Avatars: SVG/emoji-based or illustrated placeholders keyed by race+gender
+1. Install jsPDF dependency
+2. Create animated space background component (canvas or CSS stars + nebula)
+3. Build multi-step wizard with step indicator
+4. Step 1: BasicInfo form (name, race, custom race, about)
+5. Step 2: AbilitySliders with linked skills display, point-buy tracking
+6. Smart recommendation logic based on ability scores
+7. Equipment Synergy panel with hover tooltips
+8. Step 3: CharacterSheet preview + PDF export using jsPDF
+9. localStorage save/load/reset logic
+10. Full styling: deep blacks, cosmic purples, gold highlights, glassmorphism, glow effects

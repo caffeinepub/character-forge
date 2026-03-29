@@ -1,96 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Bricolage Grotesque";
-  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
-  font-weight: 200 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
-  font-weight: 300 700;
-  font-display: swap;
-}
-
 :root {
-  --color-bg: oklch(8% 0.018 222);
-  --color-surface: oklch(18% 0.03 218);
-  --color-card: oklch(14% 0.025 220);
-  --color-border: oklch(24% 0.025 215);
-  --color-primary: oklch(78% 0.12 195);
-  --color-primary-fg: oklch(8% 0.018 222);
-  --color-foreground: oklch(93% 0.012 210);
-  --color-muted-fg: oklch(54% 0.022 210);
-  --color-secondary-fg: oklch(72% 0.025 210);
-  --color-input: oklch(20% 0.028 217);
-  --color-destructive: oklch(50% 0.15 22);
-  --color-gold: oklch(78% 0.12 68);
+  --color-bg: oklch(7% 0.025 290);
+  --color-surface: oklch(13% 0.035 285);
+  --color-card: oklch(10% 0.03 288);
+  --color-glass: oklch(13% 0.03 285 / 0.55);
+  --color-border: oklch(30% 0.06 285 / 0.5);
+  --color-border-bright: oklch(50% 0.12 285 / 0.6);
+  --color-gold: oklch(75% 0.1 75);
+  --color-gold-bright: oklch(83% 0.13 78);
+  --color-gold-dim: oklch(60% 0.08 72);
+  --color-purple: oklch(45% 0.18 290);
+  --color-purple-bright: oklch(58% 0.22 288);
+  --color-purple-glow: oklch(45% 0.18 290 / 0.5);
+  --color-nebula: oklch(28% 0.1 290);
+  --color-foreground: oklch(94% 0.015 290);
+  --color-muted-fg: oklch(67% 0.05 285);
+  --color-label: oklch(58% 0.08 285);
+  --color-primary: oklch(45% 0.18 290);
+  --color-primary-fg: oklch(94% 0.015 290);
+  --color-input: oklch(15% 0.04 286);
+  --color-destructive: oklch(55% 0.18 22);
+  --color-success: oklch(60% 0.15 145);
   color-scheme: dark;
 }
 
 @layer base {
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
-
   body {
     background-color: var(--color-bg);
-    background-image: radial-gradient(
-        ellipse at 20% 0%,
-        oklch(12% 0.04 200 / 0.6) 0%,
-        transparent 60%
-      ),
-      radial-gradient(
-        ellipse at 80% 100%,
-        oklch(10% 0.03 240 / 0.4) 0%,
-        transparent 60%
-      );
-    background-attachment: fixed;
     color: var(--color-foreground);
-    font-family: "Satoshi", sans-serif;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 15px;
     min-height: 100vh;
+    overflow-x: hidden;
   }
-
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-card);
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
+    background: var(--color-nebula);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: var(--color-purple);
   }
 }
 
 @layer utilities {
-  .glow-teal {
-    box-shadow: 0 0 12px oklch(78% 0.12 195 / 0.35), 0 0 30px
-      oklch(78% 0.12 195 / 0.12);
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 8px 32px oklch(0% 0 0 / 0.4), inset 1px 1px 0
+      oklch(80% 0.05 285 / 0.08);
   }
-  .glow-teal-sm {
-    box-shadow: 0 0 6px oklch(78% 0.12 195 / 0.3);
+  .text-gold-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(65% 0.1 72),
+      oklch(83% 0.13 78),
+      oklch(68% 0.09 70)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .card-interactive {
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s
-      ease;
+  .font-cinzel {
+    font-family: "Cinzel", serif;
   }
-  .card-interactive:hover {
-    border-color: oklch(78% 0.12 195 / 0.5);
-    box-shadow: 0 0 8px oklch(78% 0.12 195 / 0.15);
+  .font-rajdhani {
+    font-family: "Rajdhani", sans-serif;
+  }
+  .skill-chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: oklch(15% 0.03 285 / 0.4);
+  }
+  .skill-chip:hover {
+    border-color: var(--color-gold-dim);
+    color: var(--color-gold);
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, oklch(65% 0.1 72), oklch(78% 0.12 76));
+    color: oklch(10% 0.02 285);
+    border: none;
+    border-radius: 999px;
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    box-shadow: 0 0 20px oklch(75% 0.1 75 / 0.35);
+    transition: all 0.2s;
+  }
+  .btn-gold:hover {
+    box-shadow: 0 0 30px oklch(75% 0.1 75 / 0.55), 0 0 60px
+      oklch(75% 0.1 75 / 0.2);
     transform: translateY(-1px);
   }
-  .card-interactive.selected {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 12px oklch(78% 0.12 195 / 0.35), 0 0 30px
-      oklch(78% 0.12 195 / 0.12);
+  .btn-purple {
+    background: linear-gradient(
+      135deg,
+      oklch(43% 0.18 290),
+      oklch(55% 0.22 288)
+    );
+    color: var(--color-foreground);
+    border: none;
+    border-radius: 999px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 16px var(--color-purple-glow);
+    transition: all 0.2s;
+  }
+  .btn-purple:hover {
+    box-shadow: 0 0 24px oklch(55% 0.22 288 / 0.6), 0 0 50px
+      oklch(45% 0.18 290 / 0.3);
+    transform: translateY(-1px);
   }
 }
